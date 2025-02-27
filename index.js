@@ -25,6 +25,22 @@ app.get("/api/hello", function (req, res) {
 });
 
 
+app.get("/api/:date?", function (req, res) {
+  let dateParam = req.params.date;
+  
+ 
+  if(!dateParam){
+    return res.json({unix: Date.now(), utc: new Date.toString()})
+  }
+
+  if(date.toString() === "Invalid Date"){
+    return res.json({ error : "Invalid Date" })
+  }else{
+  res.json({ unix: Number(date.getTime()), utc: date.toUTCString()} )
+  }
+
+});
+
 
 // Listen on port set in environment variable or default to 3000
 var listener = app.listen(process.env.PORT || 3000, function () {
